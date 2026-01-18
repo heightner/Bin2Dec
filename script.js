@@ -10,12 +10,34 @@ const conToDec = (bin) => {
     return decNum
 }
 
+const conToOct = (bin) => {
+    let input = conToDec(bin)
+    let result = '';
+    while (input > 0) {
+        result = (input % 8) + result;
+        input = Math.floor(input / 8);
+    }
+    return result
+}
+
+const conToHex = (bin) => {
+    let input = conToDec(bin)
+    const hexMap = "0123456789ABCDEF";
+    let result = ''
+    while (input > 0) {
+        result = hexMap[input % 16] + result;
+        input = Math.floor(input / 16)
+    }
+    return result
+}
+
 function converion(e) {
     e.preventDefault()
     let BinString = document.getElementById('input').value;
     let convertTo = document.querySelector('#numType').value
     let elt = document.querySelector('#error')
     const resultSection = document.querySelector('#result')
+    let result;
 
     if (!BinString) {
         elt.innerText = 'Please enter a binary string to begin with'
@@ -30,7 +52,21 @@ function converion(e) {
     elt.innerText = '';
     elt.classList.add('invisible');
 
-    const result = conToDec(BinString)
+    switch (convertTo) {
+        case 'dec':
+            result = conToDec(BinString)
+            break;
+        case 'oct':
+            result = conToOct(BinString)
+            break;
+        case 'hex':
+            result = conToHex(BinString)
+            break
+        default:
+            elt.innerText = 'NOt a Proper Conversion selected'
+            elt.classList.remove('invisible')
+            break;
+    }
     if (result) resultSection.innerText = result
 }
 
