@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bin2Dec</title>
+    <meta name="description" content="A simple tool to convert binary numbers to decimal format.">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+</head>
+
+<body class="w-screen box-border flex flex-col min-h-screen">
+    <header id="header" class="w-full h-[7vh] bg-gradient-to-r from-orange-500 to-yellow-400 flex items-center p-2">
+        <a href="#header" class="bg-gradient-to-r from-white to-[#FFF3D6] bg-clip-text text-transparent">
+            <h1 class="font-bold text-xl">Bin2Dec</h1>
+        </a>
+    </header>
+    <main id="main" class="flex-1 py-4 md:flex md:flex-row md:items-center md:justify-center">
+        <form onsubmit="converion(event)"
+            class="flex flex-col gap-y-2 border-b-2 border-gray-300 p-4 pb-8 md:w-1/2 md:border-r-2 md:border-b-0 md:max-w-96">
+            <label for="input" class="font-bold text-orange-500 text-2xl">Input:</label>
+            <input type="text" name="input" id="input"
+                class="p-2 rounded border-2 border-orange-400/50 shadow-lg font-semibold"
+                placeholder="Enter Binary String">
+            <p id="error" class="text-red-500 text-sm font-medium invisible h-5"></p>
+            <div class="flex items-end gap-5 justify-center mt-4">
+                <div class="flex flex-col gap-1.5">
+                    <label for="numType">Base:</label>
+                    <select name="numType" id="numType"
+                        class="p-2 rounded border-2 border-orange-400/40 bg-orange-50 font-medium shadow-md">
+                        <option value="bin">Octal</option>
+                        <option value="dec" selected>Decimal</option>
+                        <option value="hex">Hexadecimal</option>
+                    </select>
+                </div>
+                <input type="submit" value="Convert"
+                    class="p-2 rounded bg-orange-400 text-white font-bold shadow-md hover:bg-orange-500 transition-colors">
+            </div>
+        </form>
+        <section id="output" class="p-4 flex flex-col gap-y-2 items-center justify-center">
+            <h1 class="text-3xl font-bold text-orange-500">Conversion</h1>
+            <div class="relative rounded-lg bg-orange-400/30 w-60 min-h-36 flex items-center justify-center">
+                <button id="copy" onclick="copyToClip()" class="absolute top-2 right-2 cursor-pointer hover:scale-105 transition-all duration-300 ease-in-out"><i class="fa-regular fa-copy"></i></button>
+                <h1 id="result" class="text-5xl font-extrabold text-center text-orange-700"></h1>
+            </div>
+        </section>
+    </main>
+    <footer id="footer">
+        <div class="w-full h-[7vh] bg-gradient-to-r from-orange-500 to-yellow-400 flex items-center justify-center p-2">
+            <h1 class="font-medium text-white text-center">&copy; 2026 Bin2Dec. All rights reserved.</h1>
+        </div>
+    </footer>
+</body>
+<script src="https://kit.fontawesome.com/354a2c9c39.js" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+</html>
